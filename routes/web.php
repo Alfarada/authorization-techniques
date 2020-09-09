@@ -21,11 +21,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', function ()
-{   
-    if (auth()->user()->admin) {
-        return view('/admin/dashboard');   
-    } else {
-        return response('You shell NOT pass!', Response::HTTP_FORBIDDEN);
+Route::get('/admin', function () {
+    
+    if (! auth()->user()->admin) {
+        return response('You shell NOT pass!', Response::HTTP_FORBIDDEN);        
     }
+
+    $events = [];
+
+    $news = [];
+
+    $recentUsers = [];
+
+    return view('/admin/dashboard', compact('events','news','recentUsers'));
+
 })->name('admin_dashboard')->middleware('auth');
