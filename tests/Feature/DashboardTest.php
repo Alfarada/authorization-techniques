@@ -29,6 +29,4 @@ class DashboardTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect('login');
     }
-
-
 }

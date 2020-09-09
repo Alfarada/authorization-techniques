@@ -11,6 +11,8 @@
 |
 */
 
+use Symfony\Component\HttpFoundation\Response;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin', function ()
+{   
+    if (auth()->user()->admin) {
+        return view('/admin/dashboard');   
+    } else {
+        return response('You shell NOT pass!', Response::HTTP_FORBIDDEN);
+    }
+})->name('admin_dashboard')->middleware('auth');
