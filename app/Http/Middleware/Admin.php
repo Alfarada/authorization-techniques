@@ -16,10 +16,10 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (!auth()->user()->admin) {
+        if (! auth()->user()->admin) {
             return response('You shell NOT pass!', Response::HTTP_FORBIDDEN);
         }
-        
+
         return $next($request);
     }
 }
