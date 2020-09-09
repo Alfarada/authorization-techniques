@@ -11,7 +11,7 @@
 |
 */
 
-use Symfony\Component\HttpFoundation\Response;
+use App\Http\Middleware\Admin;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,17 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', function () {
-    
-    if (! auth()->user()->admin) {
-        return response('You shell NOT pass!', Response::HTTP_FORBIDDEN);        
-    }
-
-    $events = [];
-
-    $news = [];
-
-    $recentUsers = [];
-
-    return view('/admin/dashboard', compact('events','news','recentUsers'));
-
-})->name('admin_dashboard')->middleware('auth');
+    return view('/admin/dashboard');
+})->name('admin_dashboard')->middleware(['auth', Admin::class]);
