@@ -1,8 +1,6 @@
 <?php 
 
-Route::get('/', function () {
-    return view('/admin/dashboard');
-})->name('admin_dashboard');
+Route::get('/', 'Dashboard@index')->name('admin_dashboard');
 
 Route::get('/events', function () {
     return 'Admin Events';
