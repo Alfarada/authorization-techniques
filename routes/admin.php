@@ -12,8 +12,4 @@ Route::post('/events/create', function () {
     return 'Event created!';
 });
 
-Route::catch( function () {
-    throw new NotFoundHttpException;
-    // or
-    // return response()->view('errors.404',[],404);
-});
+Route::catch( function () { throw new NotFoundHttpException; });
