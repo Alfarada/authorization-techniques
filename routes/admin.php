@@ -12,7 +12,8 @@ Route::post('/events/create', function () {
     return 'Event created!';
 });
 
-Route::any('{any}', function () {
+Route::catch( function () {
+    throw new NotFoundHttpException;
+    // or
     // return response()->view('errors.404',[],404);
-    throw new NotFoundHttpException('Página no encontrada');
-})->where('any', '.*');
+});

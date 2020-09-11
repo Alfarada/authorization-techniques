@@ -15,6 +15,10 @@
                     @endif
 
                     You are logged in!
+                    
+                    @if (auth()->user()->isAdmin())
+                        <a href="{{ route('admin_dashboard') }}">Ir al admin</a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (! auth()->user()->admin) {
+        if (! auth()->user()->isAdmin()) {
             // return response('You shell NOT pass!', Response::HTTP_FORBIDDEN);
             throw new AuthorizationException;            
         }
