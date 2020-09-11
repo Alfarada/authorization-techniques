@@ -21,12 +21,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'admin']], function () {
-
-    Route::get('/', function () {
-        return view('/admin/dashboard');
-    })->name('admin_dashboard');
-
-    Route::get('/events', function () {
-        return 'Admin Events';
-    })->name('admin_events');
+    require __DIR__ . '/admin.php';
 });
